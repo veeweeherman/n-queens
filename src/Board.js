@@ -79,12 +79,34 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      // if the queen is at (x,y)
+      // board2._currentAttributes
+      //console.log(this.attribute[rowIndex][index]);
+      // pretty sure the folloiwng loop thru the whole damn board:
+      // for (var row = 0; row < (this.attributes.n)-1; row++) {
+           // return true;
+      //    }; 
+        var hasConflict = false;
+        for (var i = 0; i < this.attributes[rowIndex].length; i++) {
+          var count = 0;
+          if (this.attributes[rowIndex][i] === 1) { count++; }
+          // console.log("this.attributes[r][i] :",this.attributes[rowIndex][i])
+          if (count >= 2) { 
+            hasConflict = true;
+            return hasConflict; 
+          }
+        }
+      // console.log("false");
+      return hasConflict; // fixme
     },
-
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      // each piece has no RowConflict with every other piece on the board 
+      var hasConflict = false;
+      for (var i = 0; i < this.attributes.n; i++) {
+        this.hasRowConflictAt(i)   
+      };
+      return hasConflict; // fixme
     },
 
 
@@ -94,12 +116,29 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      // if the queen is at (x,y)
+      // a row conflict is (0,y) and (2, y) where y === y;
+      var hasConflict = false;
+      for (var i = 0; i < this.attributes.n; i++) {
+        var count = 0;
+        if (this.attributes[i][colIndex]){ count++; }
+        if (count >= 2) { 
+          hasConflict = true;
+          return hasConflict; 
+        } 
+      };
+      //this.attributes[r][colIndex]
+      return hasConflict; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      var hasConflict = false;
+      for (var i=0;i< this.attributes.n;i++){
+        this.hasColConflictAt(i);
+      };
+    // each piece has no ColConflict with every other piece on the board 
+      return hasConflict; // fixme
     },
 
 
