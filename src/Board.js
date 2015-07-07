@@ -79,21 +79,19 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      //var hasConflict = false;
       // referencing the row to be searched
-      var lineToTest = this.attributes[rowIndex];
       // using reduce to sum all the numbers in the row, if greater than 1, must have at least 2 queens
-      return (lineToTest.reduce(function(a,b){ return a+b; }) > 1);
+      var hasConflict = (this.attributes[rowIndex].reduce(function(a,b){ return a+b; }) > 1);
+      return hasConflict;
     },
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       // declare false before test is run
       var hasConflict = false;
-      // loop thru the number of rows, check if when reducing the numbers in the row is more than 1, change hasConflict to true
-      for (var i = 0; i < this.attributes.n; i++) {
-        if (this.attributes[i].reduce(function(a,b){return a+b; }) > 1) { hasConflict = true; }   
+      // loop thru the number of rows, check if when reducing the numbers in the row equals more than 1, change hasConflict to true
+      for (var i = 0; i < this.attributes.n; i++) {   
+        if (this.hasRowConflictAt(i)) { hasConflict = true; }
       };
-      console.log("hasAnyRowConflicts",hasConflict)
       // return answer
       return hasConflict; 
     },
