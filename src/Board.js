@@ -133,58 +133,32 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      //console.log("this.attributes[i][colIndex] ",this.attributes[i][colIndex])
-      //console.log("count", count);
-      // this.attributes[i][i]
-      // two sandwiches, one from 4,0 to 0,0 and the other from 1,0 to 4,0
-      //WERE LOOPING THRU ALL COLUMNS WHEN WE ARE GIVEN A COLUMN PARAMETER!!
-
-      var columnIndex = 0;
- 
+      //WERE LOOPING THRU ALL COLUMNS WHEN WE ARE GIVEN A COLUMN PARAMETER!! 
+      var numQueens = 0;
       var hasConflict = false;
-
+      // j is index number for columns
         for (var j = 0; j < this.attributes.n; j++) {
-          if (this.attributes[j+majorDiagonalColumnIndexAtFirstRow]) {
-          columnIndex += (this.attributes[j+majorDiagonalColumnIndexAtFirstRow][j]);
-          console.log("j, g :",majorDiagonalColumnIndexAtFirstRow+j,j)
-          }
-          // console.log("this.attributes[i][j] :",this.attributes[i][j])
-          if (columnIndex >= 2) { hasConflict = true; }
-        console.log("test break----");
+          // rowNumber as it's incremented is used to check the diagonal
+          var rowNumber = this.attributes[j+majorDiagonalColumnIndexAtFirstRow]
+          // if the rowNumber exists, we look at the row's column
+            if (rowNumber) {
+              numQueens += (rowNumber[j]);
+            }
+            if (numQueens >= 2) { 
+              hasConflict = true; 
+            }
         };
-        //return columnIndex;
-      
-
-      // for (var i = 0; i < Things.length; i++) {
-      //   Things[i]
-      // };
-
         return hasConflict;
-
-
-      // var hasConflict = false;
-      // var count = 0;
-      // for (var i = 0; i < this.attributes.n; i++) {
-      //    count += this.attributes[i][i];
-      //    if (count >= 2) { hasConflict = true; }
-      // }
-      //   return hasConflict;
     },
-
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
        var hasConflict = false;
         for (var i = 0; i < this.attributes.n; i++) {
-          //var numQueens = 0;
+          // i becomes each rowNumber to check
           if (this.hasMajorDiagonalConflictAt(i)) { hasConflict = true; };
-          //if (numQueens > 1) { hasConflict = true; } 
         };
-      // }
-      return hasConflict; // fixme
+      return hasConflict;
     },
-
-
-
     // Minor Diagonals - go from top-right to bottom-left
     // --------------------------------------------------------------
     //
