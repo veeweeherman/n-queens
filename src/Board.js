@@ -103,27 +103,27 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      // if the queen is at (x,y)
-      // a row conflict is (0,y) and (2, y) where y === y;
+      //declared test as false before running
       var hasConflict = false;
+      // this keeps track of the amount of queens per column
       var count = 0;
       for (var i = 0; i < this.attributes.n; i++) {
-        count += this.attributes[i][colIndex];  //{ count++; }
-      //console.log("this.attributes[i][colIndex] ",this.attributes[i][colIndex])
-      //console.log("count", count);
+      // loop through one column and add to count the value of the queens
+        count += this.attributes[i][colIndex]; 
         if (count >= 2) { hasConflict = true; }
-      } 
+      } // if we have more than 2 queens, that's a conflict
         return hasConflict; 
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
+      // start test as false
       var hasConflict = false;
       for (var i=0;i< this.attributes.n;i++){
+      // invoke hasColConflict on each column where i is the column number
         if (this.hasColConflictAt(i)) { hasConflict = true; }
-      };
-    // each piece has no ColConflict with every other piece on the board 
-      return hasConflict; // fixme
+      };  
+      return hasConflict;
     },
 
 
@@ -133,6 +133,8 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+      //console.log("this.attributes[i][colIndex] ",this.attributes[i][colIndex])
+      //console.log("count", count);
       // this.attributes[i][i]
       // var hasConflict = false;
       // var count = 0;
