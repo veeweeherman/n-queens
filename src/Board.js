@@ -137,18 +137,50 @@
       //console.log("count", count);
       // this.attributes[i][i]
       // two sandwiches, one from 4,0 to 0,0 and the other from 1,0 to 4,0
+      //WERE LOOPING THRU ALL COLUMNS WHEN WE ARE GIVEN A COLUMN PARAMETER!!
+
+      var columnIndex = 0;
+ 
       var hasConflict = false;
-      var count = 0;
-      for (var i = 0; i < this.attributes.n; i++) {
-         count += this.attributes[i][i];
-         if (count >= 2) { hasConflict = true; }
-      }
+
+        for (var j = 0; j < this.attributes.n; j++) {
+          if (this.attributes[j+majorDiagonalColumnIndexAtFirstRow]) {
+          columnIndex += (this.attributes[j+majorDiagonalColumnIndexAtFirstRow][j]);
+          console.log("j, g :",majorDiagonalColumnIndexAtFirstRow+j,j)
+          }
+          // console.log("this.attributes[i][j] :",this.attributes[i][j])
+          if (columnIndex >= 2) { hasConflict = true; }
+        console.log("test break----");
+        };
+        //return columnIndex;
+      
+
+      // for (var i = 0; i < Things.length; i++) {
+      //   Things[i]
+      // };
+
         return hasConflict;
+
+
+      // var hasConflict = false;
+      // var count = 0;
+      // for (var i = 0; i < this.attributes.n; i++) {
+      //    count += this.attributes[i][i];
+      //    if (count >= 2) { hasConflict = true; }
+      // }
+      //   return hasConflict;
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+       var hasConflict = false;
+        for (var i = 0; i < this.attributes.n; i++) {
+          //var numQueens = 0;
+          if (this.hasMajorDiagonalConflictAt(i)) { hasConflict = true; };
+          //if (numQueens > 1) { hasConflict = true; } 
+        };
+      // }
+      return hasConflict; // fixme
     },
 
 
