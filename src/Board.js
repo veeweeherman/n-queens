@@ -86,23 +86,36 @@
       // for (var row = 0; row < (this.attributes.n)-1; row++) {
            // return true;
       //    }; 
-        var hasConflict = false;
-        for (var i = 0; i < this.attributes[rowIndex].length; i++) {
+      //   var hasConflict = false;
+      //   for (var i = 0; i < this.attributes[rowIndex].length; i++) {
+      //     var count = 0;
+      //     if (this.attributes[rowIndex][i] === 1) { count++; }
+      //     // console.log("this.attributes[r][i] :",this.attributes[rowIndex][i])
+      //     if (count >= 2) { 
+      //       hasConflict = true;
+      //       return hasConflict; 
+      //     }
+      //   }
+      // // console.log("false");
+      // return hasConflict; // fixme
+      var hasConflict = false;
+      _.each(this.attributes[rowIndex], function(square, index) {
+       // _.each(rowIndex, function(value, column) {
           var count = 0;
-          if (this.attributes[rowIndex][i] === 1) { count++; }
-          // console.log("this.attributes[r][i] :",this.attributes[rowIndex][i])
-          if (count >= 2) { 
-            hasConflict = true;
-            return hasConflict; 
-          }
-        }
-      // console.log("false");
-      return hasConflict; // fixme
+          if (square === 1) {count++;}
+          if (count >= 2) {hasConflict = true; }
+      //  })
+      })
+
+      return hasConflict;
     },
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       // each piece has no RowConflict with every other piece on the board 
       var hasConflict = false;
+
+      // _.every(this.attributes,has)
+
       for (var i = 0; i < this.attributes.n; i++) {
         this.hasRowConflictAt(i)   
       };
@@ -148,6 +161,25 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+      // this.attributes[i][i]
+      var hasConflict = false;
+      var count = 0;
+      for (var i = 0; i < this.attributes.n; i++) {
+        if (this.attributes[i][i] === 1) {  count++; }
+        if (count >= 2) { return hasConflict; }
+        // for (var r = 0; r < this.attributes.n; r++) {
+
+        // };
+      };
+        var count = 0;
+        if (this.attributes[i][colIndex]){ count++; }
+        if (count >= 2) { 
+          hasConflict = true;
+          return hasConflict; 
+        
+      };
+      //this.attributes[r][colIndex]
+      return hasConflict; // fixme
       return false; // fixme
     },
 
