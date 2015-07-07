@@ -106,23 +106,21 @@
       // if the queen is at (x,y)
       // a row conflict is (0,y) and (2, y) where y === y;
       var hasConflict = false;
+      var count = 0;
       for (var i = 0; i < this.attributes.n; i++) {
-        var count = 0;
-        if (this.attributes[i][colIndex]){ count++; }
-        if (count >= 2) { 
-          hasConflict = true;
-          return hasConflict; 
-        } 
-      };
-      //this.attributes[r][colIndex]
-      return hasConflict; // fixme
+        count += this.attributes[i][colIndex];  //{ count++; }
+      //console.log("this.attributes[i][colIndex] ",this.attributes[i][colIndex])
+      //console.log("count", count);
+        if (count >= 2) { hasConflict = true; }
+      } 
+        return hasConflict; 
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
       var hasConflict = false;
       for (var i=0;i< this.attributes.n;i++){
-        this.hasColConflictAt(i);
+        if (this.hasColConflictAt(i)) { hasConflict = true; }
       };
     // each piece has no ColConflict with every other piece on the board 
       return hasConflict; // fixme
