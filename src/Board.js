@@ -79,51 +79,23 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      // if the queen is at (x,y)
-      // board2._currentAttributes
-      //console.log(this.attribute[rowIndex][index]);
-      // pretty sure the folloiwng loop thru the whole damn board:
-      // for (var row = 0; row < (this.attributes.n)-1; row++) {
-      // return true;
-      //    }; 
-         var hasConflict = false;
-      //   for (var i = 0; i < this.attributes[rowIndex].length; i++) {
-      //     var count = 0;
-      //     if (this.attributes[rowIndex][i] === 1) { count++; }
-      //     // console.log("this.attributes[r][i] :",this.attributes[rowIndex][i])
-      //     if (count >= 2) { 
-      //       hasConflict = true;
-      //       return hasConflict; 
-      //     }
-      //   }
-      // // console.log("false");
-      // return hasConflict; // fixme
       //var hasConflict = false;
+      // referencing the row to be searched
       var lineToTest = this.attributes[rowIndex];
-      //console.log((lineToTest.reduce(function(a,b){ return a+b; }) === 1));
-      //console.log(lineToTest.reduce(function(a,b){ return a+b;}) > 1 );
+      // using reduce to sum all the numbers in the row, if greater than 1, must have at least 2 queens
       return (lineToTest.reduce(function(a,b){ return a+b; }) > 1);
-      // _.each(this.attributes[rowIndex], function(square, index, array) {
-      // _.each(rowIndex, function(value, column) {
-      //   //console.log();
-      //     //var count = 0;
-      //     if (array.reduce(function(a,b){return a+b});)
-      //     //if (square === 1) {count++;}
-      //     //if (count >= 2) {hasConflict = true; }
-      // //  })
-      // })
-      //return hasConflict;
     },
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      // each piece has no RowConflict with every other piece on the board 
+      // declare false before test is run
       var hasConflict = false;
-      // _.every(this.attributes,has)
+      // loop thru the number of rows, check if when reducing the numbers in the row is more than 1, change hasConflict to true
       for (var i = 0; i < this.attributes.n; i++) {
         if (this.attributes[i].reduce(function(a,b){return a+b; }) > 1) { hasConflict = true; }   
       };
       console.log("hasAnyRowConflicts",hasConflict)
-      return hasConflict; //hasConflict; // fixme
+      // return answer
+      return hasConflict; 
     },
 
 
