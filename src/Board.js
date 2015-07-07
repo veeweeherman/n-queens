@@ -106,11 +106,11 @@
       //declared test as false before running
       var hasConflict = false;
       // this keeps track of the amount of queens per column
-      var count = 0;
+      var numQueens = 0;
       for (var i = 0; i < this.attributes.n; i++) {
-      // loop through one column and add to count the value of the queens
-        count += this.attributes[i][colIndex]; 
-        if (count >= 2) { hasConflict = true; }
+      // loop through one column and add to numQueens the value of the queens
+        numQueens += this.attributes[i][colIndex]; 
+        if (numQueens >= 2) { hasConflict = true; }
       } // if we have more than 2 queens, that's a conflict
         return hasConflict; 
     },
@@ -164,7 +164,31 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      var numQueens = 0;
+      var hasConflict = false;
+      // j is index number for columns
+        for (var j = this.attributes.n-1; j >=0 ; j--) {
+
+          // [k][minorDiag -k] is the right logic
+          // change for loop to use k and incrememnt k
+
+          // check if the cell is undefined, this.attributes[k][minor-k] === undefined??
+
+          // rowNumber as it's incremented is used to check the diagonal
+          var cell = this.attributes[j][minorDiagonalColumnIndexAtFirstRow-j]
+          // if the rowNumber exists, we look at the row's column
+            if (cell !== undefined /*&& !isNaN(cell)*/) {
+              // rowNumber[mino-j] === NaN at some points. at 0,2
+              numQueens += cell;
+              console.log("j,j+dia",j,minorDiagonalColumnIndexAtFirstRow-j);
+            }
+            if (numQueens >= 2) { 
+              hasConflict = true; 
+            }
+        };
+            console.log("break---")
+        return hasConflict;
+        //decrement j, increment param
     },
 
     // test if any minor diagonals on this board contain conflicts
