@@ -136,25 +136,14 @@
       //console.log("this.attributes[i][colIndex] ",this.attributes[i][colIndex])
       //console.log("count", count);
       // this.attributes[i][i]
-      // var hasConflict = false;
-      // var count = 0;
-      // for (var i = 0; i < this.attributes.n; i++) {
-      //   if (this.attributes[i][i] === 1) {  count++; }
-      //   if (count >= 2) { return hasConflict; }
-      //   // for (var r = 0; r < this.attributes.n; r++) {
-
-      //   // };
-      // };
-      //   var count = 0;
-      //   if (this.attributes[i][colIndex]){ count++; }
-      //   if (count >= 2) { 
-      //     hasConflict = true;
-      //     return hasConflict; 
-        
-      // };
-      //this.attributes[r][colIndex]
-      //return hasConflict; // fixme
-      return false; // fixme
+      // two sandwiches, one from 4,0 to 0,0 and the other from 1,0 to 4,0
+      var hasConflict = false;
+      var count = 0;
+      for (var i = 0; i < this.attributes.n; i++) {
+         count += this.attributes[i][i];
+         if (count >= 2) { hasConflict = true; }
+      }
+        return hasConflict;
     },
 
     // test if any major diagonals on this board contain conflicts
