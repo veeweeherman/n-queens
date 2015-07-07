@@ -12,8 +12,8 @@ describe("Board", function() {
       var conflictDetected = board['hasAny' + capitalize(conflictType) + 'Conflicts']();
       var conflictExpected = _(expectedConflicts).contains(conflictType);
       var message = conflictExpected ? 'should' : 'should not';
-      console.log("conflictDetected",conflictDetected);
-       console.log("conflictConflicts",conflictDetected);
+      //console.log("conflictDetected",conflictDetected);
+      //console.log("conflictConflicts",conflictDetected);
       // console.log(conflictDetected);
       // console.log(conflictDetected);
       it(message + " find a " + conflictType + " conflict", function() {

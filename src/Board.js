@@ -84,9 +84,9 @@
       //console.log(this.attribute[rowIndex][index]);
       // pretty sure the folloiwng loop thru the whole damn board:
       // for (var row = 0; row < (this.attributes.n)-1; row++) {
-           // return true;
+      // return true;
       //    }; 
-      //   var hasConflict = false;
+         var hasConflict = false;
       //   for (var i = 0; i < this.attributes[rowIndex].length; i++) {
       //     var count = 0;
       //     if (this.attributes[rowIndex][i] === 1) { count++; }
@@ -101,10 +101,10 @@
       //var hasConflict = false;
       var lineToTest = this.attributes[rowIndex];
       //console.log((lineToTest.reduce(function(a,b){ return a+b; }) === 1));
-      console.log(!lineToTest.reduce(function(a,b){ return a+b;}) == 1 );
-      return (!lineToTest.reduce(function(a,b){ return a+b; }) == 1);
+      //console.log(lineToTest.reduce(function(a,b){ return a+b;}) > 1 );
+      return (lineToTest.reduce(function(a,b){ return a+b; }) > 1);
       // _.each(this.attributes[rowIndex], function(square, index, array) {
-      //  // _.each(rowIndex, function(value, column) {
+      // _.each(rowIndex, function(value, column) {
       //   //console.log();
       //     //var count = 0;
       //     if (array.reduce(function(a,b){return a+b});)
@@ -112,17 +112,18 @@
       //     //if (count >= 2) {hasConflict = true; }
       // //  })
       // })
-      //return false; //hasConflict;
+      //return hasConflict;
     },
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       // each piece has no RowConflict with every other piece on the board 
       var hasConflict = false;
       // _.every(this.attributes,has)
-      _.each(this.attributes, function(row, index, array){
-        //this.hasRowConflictAt(index);           
-      });
-      return hasConflict; // fixme
+      for (var i = 0; i < this.attributes.n; i++) {
+        if (this.attributes[i].reduce(function(a,b){return a+b; }) > 1) { hasConflict = true; }   
+      };
+      console.log("hasAnyRowConflicts",hasConflict)
+      return hasConflict; //hasConflict; // fixme
     },
 
 
@@ -165,24 +166,24 @@
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
       // this.attributes[i][i]
-      var hasConflict = false;
-      var count = 0;
-      for (var i = 0; i < this.attributes.n; i++) {
-        if (this.attributes[i][i] === 1) {  count++; }
-        if (count >= 2) { return hasConflict; }
-        // for (var r = 0; r < this.attributes.n; r++) {
+      // var hasConflict = false;
+      // var count = 0;
+      // for (var i = 0; i < this.attributes.n; i++) {
+      //   if (this.attributes[i][i] === 1) {  count++; }
+      //   if (count >= 2) { return hasConflict; }
+      //   // for (var r = 0; r < this.attributes.n; r++) {
 
-        // };
-      };
-        var count = 0;
-        if (this.attributes[i][colIndex]){ count++; }
-        if (count >= 2) { 
-          hasConflict = true;
-          return hasConflict; 
+      //   // };
+      // };
+      //   var count = 0;
+      //   if (this.attributes[i][colIndex]){ count++; }
+      //   if (count >= 2) { 
+      //     hasConflict = true;
+      //     return hasConflict; 
         
-      };
+      // };
       //this.attributes[r][colIndex]
-      return hasConflict; // fixme
+      //return hasConflict; // fixme
       return false; // fixme
     },
 
@@ -219,4 +220,4 @@
     });
   };
 
-})();
+}());
