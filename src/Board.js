@@ -173,13 +173,13 @@
             if (rowNumber) {
               //console.log("numQ",numQueens);
               numQueens += (rowNumber[k]);
-              console.log("dia-k,k :",minorDiagonalColumnIndexAtFirstRow-k,k);
+              //console.log("dia-k,k :",minorDiagonalColumnIndexAtFirstRow-k,k);
             }
             if (numQueens >= 2) { 
               hasConflict = true; 
             }
         };
-            console.log("break---")
+            //console.log("break---")
         return hasConflict;
     },
 
