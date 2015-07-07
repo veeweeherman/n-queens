@@ -98,27 +98,30 @@
       //   }
       // // console.log("false");
       // return hasConflict; // fixme
-      var hasConflict = false;
-      _.each(this.attributes[rowIndex], function(square, index) {
-       // _.each(rowIndex, function(value, column) {
-          var count = 0;
-          if (square === 1) {count++;}
-          if (count >= 2) {hasConflict = true; }
-      //  })
-      })
-
-      return hasConflict;
+      //var hasConflict = false;
+      var lineToTest = this.attributes[rowIndex];
+      //console.log((lineToTest.reduce(function(a,b){ return a+b; }) === 1));
+      console.log(!lineToTest.reduce(function(a,b){ return a+b;}) == 1 );
+      return (!lineToTest.reduce(function(a,b){ return a+b; }) == 1);
+      // _.each(this.attributes[rowIndex], function(square, index, array) {
+      //  // _.each(rowIndex, function(value, column) {
+      //   //console.log();
+      //     //var count = 0;
+      //     if (array.reduce(function(a,b){return a+b});)
+      //     //if (square === 1) {count++;}
+      //     //if (count >= 2) {hasConflict = true; }
+      // //  })
+      // })
+      //return false; //hasConflict;
     },
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       // each piece has no RowConflict with every other piece on the board 
       var hasConflict = false;
-
       // _.every(this.attributes,has)
-
-      for (var i = 0; i < this.attributes.n; i++) {
-        this.hasRowConflictAt(i)   
-      };
+      _.each(this.attributes, function(row, index, array){
+        //this.hasRowConflictAt(index);           
+      });
       return hasConflict; // fixme
     },
 
@@ -216,4 +219,4 @@
     });
   };
 
-}());
+})();
