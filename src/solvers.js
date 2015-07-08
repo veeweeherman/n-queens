@@ -42,9 +42,8 @@ window.countNRooksSolutions = function(n) {
         next(row+1);
       // if it's false it contains no conflicts on that row so it moves to the next row
       }
-      // if the board has conflicts, toggle the piece
+      // if the board has conflicts, toggle the piece bc it needs to check the ascending column
       board.togglePiece(row, i);
-      console.log("INFINITE LOOPPPPPPP: MAKE IT RAIN")
     }
   } 
   next(0);
@@ -61,11 +60,32 @@ window.findNQueensSolution = function(n) {
   return solution;
 };
 
-
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
-  var solutionCount = undefined; //fixme
-
+  // start solution count at zero
+  var solutionCount = 0; //fixme
+  // create a new board
+  var board = new Board ({n:n});
+  // recursing through every row
+  function queenZone(row){
+    // we are looking for the limits of the queen's turf
+    // if we are on the last row, increment because we have found a solution
+    if (row === n){ 
+      solutionCount++; 
+      return;
+    }
+    for (var i = 0; i < n; i++) {
+      //checking the spot to see if has any conflicts
+      board.togglePiece(row,i);
+      if (!board.hasAnyQueensConflicts() ){
+        //recurse the function QueenZone, looking for the limits of the queen's turf
+        queenZone(row+1);
+      }
+      // this prevents the same piece trying to insert a piece on the same spot infinitely
+      board.togglePiece(row,i);
+    };
+  }
+  queenZone(0)
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
 };
