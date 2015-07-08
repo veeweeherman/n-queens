@@ -55,7 +55,6 @@ window.countNRooksSolutions = function(n) {
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
   var solution = undefined; //fixme
-
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
   return solution;
 };
@@ -67,24 +66,24 @@ window.countNQueensSolutions = function(n) {
   // create a new board
   var board = new Board ({n:n});
   // recursing through every row
-  function queenZone(row){
+  var queenZone = function(row){
     // we are looking for the limits of the queen's turf
     // if we are on the last row, increment because we have found a solution
     if (row === n){ 
       solutionCount++; 
-      return;
+       return;
     }
     for (var i = 0; i < n; i++) {
       //checking the spot to see if has any conflicts
       board.togglePiece(row,i);
-      if (!board.hasAnyQueensConflicts() ){
+      if ( !board.hasAnyQueensConflicts() ){
         //recurse the function QueenZone, looking for the limits of the queen's turf
         queenZone(row+1);
       }
       // this prevents the same piece trying to insert a piece on the same spot infinitely
       board.togglePiece(row,i);
-    };
-  }
+    }
+  };
   queenZone(0)
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
